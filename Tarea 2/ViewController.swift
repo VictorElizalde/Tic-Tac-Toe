@@ -93,7 +93,6 @@ class ViewController: UIViewController {
                 
                 gameResult()
                 winnerMessage(winner: "Tie")
-                print("is a tie")
                 
             }
             
