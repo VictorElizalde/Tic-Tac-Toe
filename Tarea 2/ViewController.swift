@@ -19,13 +19,6 @@ class ViewController: UIViewController {
     let winningCombinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
     var isTied = false
     
-    func gameResult(){
-        
-        activeGame = false
-        isTied = false
-        
-    }
-    
     func winnerMessage(winner: String){
         
         if winner != "Tie" {
@@ -48,7 +41,7 @@ class ViewController: UIViewController {
 
     @IBAction func pressBoard(_ sender: UIButton) {
         
-        if gameState[sender.tag-1] == 0 {
+        if gameState[sender.tag-1] == 0 && activeGame{
             
             gameState[sender.tag-1] = activePlayer
             
@@ -66,20 +59,24 @@ class ViewController: UIViewController {
             }
             
             for combination in winningCombinations{
+                
                 if gameState[combination[0]] != 0 && gameState[combination[0]] == gameState[combination[1]] && gameState[combination[1]] == gameState[combination[2]]{
                     
                     //We have a winner
                     
-                    gameResult()
+                    activeGame = false
+                    isTied = false
                     
                     
                     if gameState[combination[0]] == 1 {
                         
                         winnerMessage(winner: "Cross")
+                        break
                         
-                    } else{
+                    } else {
                         
                         winnerMessage(winner: "Circle")
+                        break
                         
                     }
                     
@@ -91,7 +88,8 @@ class ViewController: UIViewController {
             
             if moveCounter >= 9 && activeGame {
                 
-                gameResult()
+                activeGame = false
+                isTied = false
                 winnerMessage(winner: "Tie")
                 
             }
