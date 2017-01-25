@@ -41,7 +41,7 @@ class ViewController: UIViewController {
 
     @IBAction func pressBoard(_ sender: UIButton) {
         
-        if gameState[sender.tag-1] == 0 && activeGame{
+        if gameState[sender.tag-1] == 0 && activeGame {
             
             gameState[sender.tag-1] = activePlayer
             
@@ -71,12 +71,10 @@ class ViewController: UIViewController {
                     if gameState[combination[0]] == 1 {
                         
                         winnerMessage(winner: "Cross")
-                        break
                         
                     } else {
                         
                         winnerMessage(winner: "Circle")
-                        break
                         
                     }
                     
@@ -101,7 +99,7 @@ class ViewController: UIViewController {
     @IBAction func playAgain(_ sender: UIButton) {
         
         activeGame = true
-        gameState = [0,0,0,0,0,0,0,0,0]
+        gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         activePlayer = 1
         moveCounter = 0
         turnTF.text = "Cross"
@@ -109,7 +107,9 @@ class ViewController: UIViewController {
         for i in 1..<10{
             
             if let button = view.viewWithTag(i) as? UIButton{
+                
                 button.setImage(nil, for: [])
+                
             }
         }
 
